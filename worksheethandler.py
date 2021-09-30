@@ -16,3 +16,12 @@ class WorksheetHandler:
     SCOPED_CREDS = CREDS.with_scopes(SCOPE)
     GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
     SHEET = GSPREAD_CLIENT.open('highscore_table')
+
+    def get_worksheet_data(name):
+        """
+        This method gets all the values from the desired worksheet
+        """
+        worksheet = WorksheetHandler.SHEET.worksheet(name)
+        data = worksheet.get_all_values()
+        return data
+
