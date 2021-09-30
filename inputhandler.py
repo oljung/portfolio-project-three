@@ -1,4 +1,4 @@
-class InputHandler():
+class InputHandler:
     """
     This class acts as a utility class containing static methods 
     for handling input in other modules.
