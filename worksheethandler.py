@@ -25,3 +25,13 @@ class WorksheetHandler:
         data = worksheet.get_all_values()
         return data
 
+
+    def update_worksheet(name, data):
+        """
+        Update the worksheet "name" with a new row coming from
+        "data"
+        """
+        print(f'Attempting to update {name} data...\n')
+        worksheet = WorksheetHandler.SHEET.worksheet(name)
+        worksheet.append_row(data)
+        print(f'{name} data updated successfully...\n')
