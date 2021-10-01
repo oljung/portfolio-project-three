@@ -141,3 +141,23 @@ class Ranking:
         return flush
 
 
+    def straight(self, hand):
+        """
+        Determines if the hand ranking is straight
+        """
+        straight = True
+        connected = 0
+        for card in hand.get_cards():
+            if 'previous_rank' in locals():
+                if card.rank == 1:
+                    if card.rank == previous_rank + 1 or card.rank == previous_rank +9:
+                        connected += 1
+                else:
+                    if card.rank == previous_rank + 1:
+                        connected +=1
+            previous_rank = card.rank
+        if connected != 4:
+            straight = False
+        return straight
+
+
