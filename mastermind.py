@@ -1,4 +1,5 @@
 import random
+from inputhandler import InputHandler
 class Mastermind:
     """
     This class contains the logic for the game mastermind, 
@@ -31,3 +32,20 @@ class Mastermind:
             else:
                 code.append(random_number)
         return code
+
+
+    def make_guess(self, length):
+        """
+        Method for getting a guess of the same lenght
+        as the secret number, this method will run until 
+        a valid number sequence is entered
+        """
+        correct_number_values = False
+        while not correct_number_values:
+            guess = InputHandler.input_integer_sequence(f'Enter a number of {self.length} numbers between {self.nr_low} and {self.nr_high} please')
+            for num in guess:
+                if num >= self.nr_low and num <= self.nr_high:
+                    correct_number_values = True
+                else:
+                    print(f'{num} is not within desired range, {self.nr_low} and {self.nr_high}\n')
+        return guess
