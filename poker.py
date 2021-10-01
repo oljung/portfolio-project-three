@@ -140,20 +140,23 @@ class Ranking:
         """
         Determines if the hand ranking is flush
         """
+        value = 0
         flush = True
         for card in hand.get_cards():
             if 'previous_suit' in locals():
                 if card.suit != previous_suit:
                     flush = False
             previous_suit = card.suit
-        return flush
+        if(flush):
+            value = 5
+        return value
 
 
     def straight(self, hand):
         """
         Determines if the hand ranking is straight
         """
-        straight = True
+        value = 0
         connected = 0
         for card in hand.get_cards():
             if 'previous_rank' in locals():
@@ -164,9 +167,9 @@ class Ranking:
                     if card.rank == previous_rank + 1:
                         connected +=1
             previous_rank = card.rank
-        if connected != 4:
-            straight = False
-        return straight
+        if connected == 4:
+            value = 4
+        return value
 
 
     def two_three_four(self, hand):
@@ -174,11 +177,7 @@ class Ranking:
         Method for determining of hand has a pair, two pair, trips, 
         quads of full house
         """
-        pair = True
-        trips = False
-        quads = False
-        full_house = False
-        two_pair = False
+        value = 0
         first_card = self.determine_first_card_in_set(hand)
         first_card_rank = 0
         same = 0
@@ -193,16 +192,16 @@ class Ranking:
                     first_same += 1
             previous_rank = card.rank
         if same == 3 and first_same == 3:
-            quads = True
+            value = 7
         if same == 3 and first_same != 3:
-            full_house = True
+            value = 6
         if same == 2 and first_same == 2:
-            trips = True
+            value = 3
         if same == 2 and first_same != 2:
-            two_pair = True
+            value = 2
         if same != 1:
-            pair = False
-        return pair, trips, two_pair, quads, full_house
+            value = 1
+        return value
     
 
     def determine_first_card_in_set(self, hand):
