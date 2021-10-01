@@ -83,3 +83,17 @@ class RunMastermind:
         play_again = InputHandler.input_bool('Would you like to play another round? Y(es) or N(no): ')
         if play_again:
             self.run_game(custom)
+
+
+    def update_scores(self, score):
+        """
+        This method updates the values of the instance 
+        variables handling scores from the game
+        """
+        self.result_list.append(score)
+        
+        if score < self.best_score:
+            self.best_score = score
+        
+        if score > self.worst_score:
+            self.worst_score = score
