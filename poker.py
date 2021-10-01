@@ -1,5 +1,5 @@
 from random import shuffle
-
+import operator
 
 
 class Card:
@@ -68,3 +68,13 @@ class Hand(Deck):
     def __init__(self, name=''):
         self.cards = []
         self.name = name
+    
+
+    def deal(self, deck, cards):
+        """
+        This method is used to deal a new hand 
+        and sort it based on card rank
+        """
+        while len(self.cards) < cards:
+            self.cards.append(deck.deal())
+        self.cards.sort(key=operator.attrgetter('rank'))# sorts the hand based on the rank value of each object
