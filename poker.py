@@ -108,3 +108,36 @@ class Hand(Deck):
                 self.cards.pop(pos-1)# the values in position will be fron 1-5, index of cards is from 0-4
                 self.cards.insert(pos-1, deck.deal())
             self.sort_hand()
+
+
+class Ranking:
+    """
+    Class for handling the ranking of a hand for determining winning hand 
+    of the game
+    """
+    rankings = [
+        'Straight Flush',
+        'Quads',
+        'Full House',
+        'Flush',
+        'Straight',
+        'Trips',
+        'Two Pair',
+        'Pair',
+        'High Card'
+    ]
+
+
+    def flush(self, hand):
+        """
+        Determines if the hand ranking is flush
+        """
+        flush = True
+        for card in hand.get_cards():
+            if 'previous_suit' in locals():
+                if card.suit != previous_suit:
+                    flush = False
+            previous_suit = card.suit
+        return flush
+
+
