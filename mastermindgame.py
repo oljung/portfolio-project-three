@@ -12,6 +12,9 @@ class RunMastermind:
         self.worst_score = 0
         self.result_list = []
         self.custom = False
+        # call starting methods
+        self.welcome_screen()
+        self.select_game_type()
 
 
     def welcome_screen(self):
@@ -25,8 +28,8 @@ class RunMastermind:
         'You have as many guesses as you need.\n' +
         'After every guess you will see a result of that guess.\n'+
         'A result may look like this:\n'+
-        'Your guess: 1234'+
-        '[1, -, C, -]')
+        'Your guess: 1234\n'+
+        'The result: [1, -, C, -]')
         print('This means the following:\n'+
         'The first number, 1, is in the correct position\n'+
         'The second number, 2, is not included in the secret code\n'+
@@ -34,7 +37,7 @@ class RunMastermind:
         'The fourth number, 4, is not included in the code')
         print('When you have the correct numbers in the right place, you win!\n'+
         'Try to beat the game in as few guesses as possible.\n'+
-        'The first thing you will do is decide if you want standard or cusom game.\n'+
+        'The first thing you will do is decide if you want standard or custom game.\n'+
         'Only the standard game can save you highscore')
 
 
@@ -50,9 +53,9 @@ class RunMastermind:
         print('2. Custom game, set your rules')
         print('0. Back to main menu')
         answer = InputHandler.input_integer_range('Please make a choice: ', 0, 2)
-        if answer == '1':
+        if answer == 1:
             self.run_game()
-        if answer == '2':
+        if answer == 2:
             self.run_game(True)
 
 
