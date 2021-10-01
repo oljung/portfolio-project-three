@@ -110,6 +110,14 @@ class Hand(Deck):
             self.sort_hand()
 
 
+    def __str__(self):
+        """
+        Changing the default return value for print(hand)
+        """
+        return f'Hand of {self.name} contains:\n {self.cards[0]}\n  {self.cards[1]}\n   {self.cards[2]}\n    ' \
+                f'{self.cards[3]}\n     {self.cards[4]}\n'
+
+
 class Ranking:
     """
     Class for handling the ranking of a hand for determining winning hand 
