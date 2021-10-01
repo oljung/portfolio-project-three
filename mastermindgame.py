@@ -11,6 +11,7 @@ class RunMastermind:
         self.best_score = 0
         self.worst_score = 0
         self.result_list = []
+        self.custom = False
 
 
     def welcome_screen(self):
@@ -50,6 +51,35 @@ class RunMastermind:
         print('0. Back to main menu')
         answer = InputHandler.input_integer_range('Please make a choice: ', 0, 2)
         if answer == '1':
-            run_game()
+            self.run_game()
         if answer == '2':
-            run_game(True)
+            self.run_game(True)
+
+
+    def run_game(self, custom=False):
+        """
+        This method runs the game using the bool custom to 
+        determing game type. It will create an object of Mastermind 
+        based on value of custom. It will then update scores, ask 
+        for another game and call itself using custom for same gametype 
+        in loop
+        """
+        self.custom = custom # update instance variable, used for determining saving highscore or not
+        game = None
+        if not custom:
+            game = Mastermind()
+        else:# The user gets to set custom rules for the game
+            correct_range = False
+            while not correct_range:
+                low = InputHandler.input_integer_range('Please select the lowest number: ',0, 8)
+                high = InputHandler.input_integer_range('Please select the highest number: ', 1, 9)
+                if high - low > 0:
+                    correct_range = True
+            length = InputHandler.input_integer('Please select a lenght: ')
+            game = Mastermind(low, high, length)
+        
+        score = game.play()
+        self.update_scores(score)
+        play_again = InputHandler.input_bool('Would you like to play another round? Y(es) or N(no): ')
+        if play_again:
+            self.run_game(custom)
