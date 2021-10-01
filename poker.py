@@ -1,4 +1,4 @@
-
+from random import shuffle
 
 
 
@@ -13,6 +13,7 @@ class Card:
     def __init__(self, suit=0, rank=0):
         self.suit = suit
         self.rank = rank
+
 
     def __str__(self):
         """
@@ -30,6 +31,7 @@ class Deck:
         self.cards = []
         self.buildDeck()
 
+
     def build_deck(self):
         """
         This method iterates through the lists in Card to create 
@@ -41,3 +43,17 @@ class Deck:
                 self.cards.append(Card(suit, rank))
 
 
+    def shuffle(self):
+        """
+        This method shuffles the list "cards" making 
+        the order random
+        """
+        shuffle(self.cards)
+
+
+    def deal(self):
+        """
+        This method is used to deal cards from the deck 
+        by removing and returning the last card in the list
+        """
+        return self.cards.pop()
