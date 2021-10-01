@@ -21,4 +21,23 @@ class Card:
         return f'{self.ranks[self.rank]} of {self.suits[self.suit]}'
 
 
-    
+class Deck:
+    """
+    This class builds a deck of objects from Card 
+    the deck will then be used to build a hand and to deal new cards
+    """
+    def __init__(self):
+        self.cards = []
+        self.buildDeck()
+
+    def build_deck(self):
+        """
+        This method iterates through the lists in Card to create 
+        13 Card objects for each of the four suites and appends them 
+        all in the list cards
+        """
+        for suit in range(0, 4):
+            for rank in range(1,14):
+                self.cards.append(Card(suit, rank))
+
+
