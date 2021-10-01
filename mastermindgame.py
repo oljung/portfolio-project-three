@@ -97,3 +97,13 @@ class RunMastermind:
         
         if score > self.worst_score:
             self.worst_score = score
+
+
+    def prepare_highscore_item(self):
+        """
+        This method returns a list of the values 
+        stored in the instance variables for use when 
+        updating a highscore table
+        """
+        average_score = round(sum(self.result_list)/len(self.result_list),2)# average score of rounds played, rounded to two decimals
+        return [self.name, len(self.result_list), average_score, self.best_score, self.worst_score]
