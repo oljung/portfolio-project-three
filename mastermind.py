@@ -34,7 +34,7 @@ class Mastermind:
         return code
 
 
-    def make_guess(self, length):
+    def make_guess(self):
         """
         Method for getting a guess of the same lenght
         as the secret number, this method will run until 
@@ -42,7 +42,7 @@ class Mastermind:
         """
         correct_number_values = False
         while not correct_number_values:
-            guess = InputHandler.input_integer_sequence(f'Enter a number of {self.length} numbers between {self.nr_low} and {self.nr_high} please')
+            guess = InputHandler.input_integer_sequence(f'Enter a number of {self.length} numbers between {self.nr_low} and {self.nr_high} please: ', self.length)
             for num in guess:
                 if num >= self.nr_low and num <= self.nr_high:
                     correct_number_values = True
@@ -63,8 +63,23 @@ class Mastermind:
             if guess == secret:
                 evaluate_code.append(str(guess))
                 right_place += 1
-            elif guess in secret:
+            elif guess in secret_code:
                 evaluate_code.append("C")
             else:
                 evaluate_code.append("-")
         return right_place, evaluate_code
+
+
+    def play(self):
+        right_place = 0
+        rounds = 0
+        secret_code = self.secret_number(self.nr_low, self.nr_high, self.length)
+        while right_place < len(secret_code):
+            guessed_code = self.make_guess()
+            right_place, evaluate_code = self.check_code(secret_code, guessed_code)
+            print(f'Number of digits in the right place: {right_place}')
+            print(f'Result of your last guess: {evaluate_code}')
+            print()
+            rounds += 1
+        print(f'Mastermind was solved in {rounds} rounds.\nWell done!\n')
+        return rounds
