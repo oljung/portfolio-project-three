@@ -49,3 +49,22 @@ class Mastermind:
                 else:
                     print(f'{num} is not within desired range, {self.nr_low} and {self.nr_high}\n')
         return guess
+
+
+    def check_code(self, secret_code, guessed_code):
+        """
+        This method compares the guessed number against the 
+        secret number generated. Will return feedback based on 
+        evaluated result 
+        """
+        right_place = 0
+        evaluate_code = []
+        for guess, secret in zip(guessed_code, secret_code):
+            if guess == secret:
+                evaluate_code.append(str(guess))
+                right_place += 1
+            elif guess in secret:
+                evaluate_code.append("C")
+            else:
+                evaluate_code.append("-")
+        return right_place, evaluate_code
