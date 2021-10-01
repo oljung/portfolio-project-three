@@ -169,3 +169,47 @@ class Ranking:
         return straight
 
 
+    def two_three_four(self, hand):
+        """
+        Method for determining of hand has a pair, two pair, trips, 
+        quads of full house
+        """
+        pair = True
+        trips = False
+        quads = False
+        full_house = False
+        two_pair = False
+        first_card = self.determine_first_card_in_set(hand)
+        same = 0
+        first_same = 0
+        for card in hand.get_cards():
+            if 'previous_rank' in locals():
+                if card.rank == previous_rank:
+                    same += 1
+                if card.rank == first_card:
+                    first_same += 1
+            previous_rank = card.rank
+        if same == 3 and first_same == 3:
+            quads = True
+        if same == 3 and first_same != 3:
+            full_house = True
+        if same == 2 and first_same == 2:
+            trips = True
+        if same == 2 and first_same != 2:
+            two_pair = True
+        if same != 1:
+            pair = False
+        return pair, trips, two_pair, quads, full_house
+    
+
+    def determine_first_card_in_set(self, hand):
+        """
+        used to determine first card in a set of cards 
+        of equal rank
+        """
+        cards = hand.get_cards()
+        for i in range(4):
+            card = cards.pop(0)
+            if card in cards:
+                return card
+                break
