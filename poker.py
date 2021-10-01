@@ -125,6 +125,7 @@ class Ranking:
     """
     rankings = [
         'Straight Flush',
+        'narf'# value used to properly align straigh flush index (straight + flush = 9)
         'Quads',
         'Full House',
         'Flush',
@@ -136,6 +137,19 @@ class Ranking:
     ]
 
 
+    def rank_hand(self, hand):
+        """
+        Ranks the value of a hand and returns the ranking and 
+        value for use in comparing hands
+        """
+        value = 0
+        value += self.flush(hand)
+        value += self.straight(hand)
+        if value == 0: # only needs to run if value is still zero. You can't have a pair and straight/flush at the same time
+            value += self.two_three_four(hand)
+        return value, self.rankings[value]
+
+    
     def flush(self, hand):
         """
         Determines if the hand ranking is flush
@@ -180,6 +194,7 @@ class Ranking:
         value = 0
         first_card = self.determine_first_card_in_set(hand)
         first_card_rank = 0
+        second_card = None # This card is used for determining rank of highest 2nd pair in a tie
         same = 0
         first_same = 0
         if first_card != None:
@@ -190,6 +205,8 @@ class Ranking:
                     same += 1
                 if card.rank == first_card_rank:
                     first_same += 1
+                else:
+                    second_card = card
             previous_rank = card.rank
         if same == 3 and first_same == 3:
             value = 7
@@ -201,7 +218,7 @@ class Ranking:
             value = 2
         if same != 1:
             value = 1
-        return value
+        return value, second_card
     
 
     def determine_first_card_in_set(self, hand):
