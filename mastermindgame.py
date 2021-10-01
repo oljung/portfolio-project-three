@@ -35,3 +35,21 @@ class RunMastermind:
         'Try to beat the game in as few guesses as possible.\n'+
         'The first thing you will do is decide if you want standard or cusom game.\n'+
         'Only the standard game can save you highscore')
+
+
+    def select_game_type(self):
+        """
+        This method selects the game type, the standard game 
+        or a default version where the user can select lenght of code 
+        and what numbers to include
+        """
+        print('Please secect game type.\n'+
+        'NOTE! only standard game saves highscore')
+        print('1. Standard game')
+        print('2. Custom game, set your rules')
+        print('0. Back to main menu')
+        answer = InputHandler.input_integer_range('Please make a choice: ', 0, 2)
+        if answer == '1':
+            run_game()
+        if answer == '2':
+            run_game(True)
