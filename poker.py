@@ -30,6 +30,7 @@ class Deck:
     def __init__(self):
         self.cards = []
         self.buildDeck()
+        self.shuffle()
 
 
     def build_deck(self):
@@ -57,3 +58,13 @@ class Deck:
         by removing and returning the last card in the list
         """
         return self.cards.pop()
+
+
+class Hand(Deck):
+    """
+    This class creates and object containing cards from 
+    the Deck class and methods for drawing and replacing cards
+    """
+    def __init__(self, name=''):
+        self.cards = []
+        self.name = name
