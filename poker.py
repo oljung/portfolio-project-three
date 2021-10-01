@@ -180,13 +180,16 @@ class Ranking:
         full_house = False
         two_pair = False
         first_card = self.determine_first_card_in_set(hand)
+        first_card_rank = 0
         same = 0
         first_same = 0
+        if first_card != None:
+            first_card_rank = first_card.rank
         for card in hand.get_cards():
             if 'previous_rank' in locals():
                 if card.rank == previous_rank:
                     same += 1
-                if card.rank == first_card:
+                if card.rank == first_card_rank:
                     first_same += 1
             previous_rank = card.rank
         if same == 3 and first_same == 3:
@@ -207,9 +210,11 @@ class Ranking:
         used to determine first card in a set of cards 
         of equal rank
         """
+        return_card = None
         cards = hand.get_cards()
         for i in range(4):
             card = cards.pop(0)
             if card in cards:
-                return card
+                return_card = card
                 break
+        return return_card
