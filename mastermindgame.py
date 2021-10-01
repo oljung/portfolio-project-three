@@ -29,7 +29,7 @@ class RunMastermind:
         'After every guess you will see a result of that guess.\n'+
         'A result may look like this:\n'+
         'Your guess: 1234\n'+
-        'The result: [1, -, C, -]')
+        "The result: ['1', '-', 'C', '-']")
         print('This means the following:\n'+
         'The first number, 1, is in the correct position\n'+
         'The second number, 2, is not included in the secret code\n'+
