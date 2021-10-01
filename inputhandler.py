@@ -20,6 +20,23 @@ class InputHandler:
                 print('Only enter a whole number within the desired range, please\n')
 
 
+    def input_integer_sequence(message, length):
+        """
+        This method will convert a string input to a squence of 
+        numbers of "lenght" and return it as a list
+        """
+        while(True):
+            try:
+                numbers = [int(i) for i in str(input(message))]
+                if len(numbers) == length:
+                    return numbers
+                    break
+                else:
+                    print('The numbers you have entered are not the correct lenght\n')
+            except:
+                print('Only whole numbers are allowed\n')
+
+
     def input_integer(message):
         """
         Method for handling integer input of any value, 
@@ -31,7 +48,7 @@ class InputHandler:
                     return num
                     break
             except:
-                print('Only enter a whole number, please')
+                print('Only enter a whole number, please\n')
         
     
     def input_bool(message):
@@ -49,4 +66,4 @@ class InputHandler:
                 return False
                 break
             else:
-                print('please enter value y(es) or n(o)')
+                print('please enter value y(es) or n(o)\n')
