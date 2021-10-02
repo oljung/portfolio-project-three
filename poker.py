@@ -104,7 +104,7 @@ class Hand(Deck):
         """
         length = InputHandler.input_integer_range('How many cards do you want to swap? 0-5: ', 0, 5)
         if length != 0:
-            positions = InputHandler.input_integer_sequence('Please select with cards as a number, like: 14 or 125', length)
+            positions = InputHandler.input_integer_sequence('Please select with cards as a number, like: 14 or 125: ', length)
             for pos in positions:
                 self.cards.pop(pos-1)# the values in position will be fron 1-5, index of cards is from 0-4
                 self.cards.insert(pos-1, deck.deal())
@@ -261,7 +261,6 @@ class Ranking:
         """
         player_value, player_ranking = self.rank_hand(player_hand)
         AI_value, AI_ranking = self.rank_hand(AI_hand)
-        print(player_value, AI_value)
         result = ''
         AI_win = False
         if player_value > AI_value:
@@ -299,8 +298,6 @@ class Ranking:
         if value == 6 or value == 2:
             player_rank, player_trips = self.two_three_four(player_hand)
             AI_rank, AI_trips = self.two_three_four(AI_hand)
-            print(player_trips)
-            print(AI_trips)
             if AI_trips.rank > player_trips.rank:
                 AI_win = True
             if AI_trips.rank == player_trips.rank:
