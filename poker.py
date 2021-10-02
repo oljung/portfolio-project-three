@@ -228,9 +228,22 @@ class Ranking:
         """
         return_card = None
         cards = hand.get_cards()
-        for i in range(4):
-            card = cards.pop(0)
-            if card in cards:
-                return_card = card
-                break
+        card_found = False
+        while not card_found:
+            for i in range(4):
+                card = cards.pop(0)
+                for c in cards:# compare the removed card to the remaining cards in list
+                    if card.rank == c.rank:
+                        return_card = card
+                        card_found = True
+                        break
+
         return return_card
+
+
+    def get_highcard(self, hand):
+        cards = hand.get_cards()
+        if cards[0].rank == 1:
+            return cards[0]
+        else:
+            return cards[4]
