@@ -290,25 +290,36 @@ class Ranking:
         if value == 7 or value == 3 or value == 1:
             player_set = self.determine_first_card_in_set(player_hand)
             AI_set = self.determine_first_card_in_set(AI_hand)
-            if AI_set.rank > player_set.rank:
+            if AI_set.rank == 1 and player_set.rank != 1:
                 AI_win = True
+            if player_set.rank != 1:
+                if AI_set.rank > player_set.rank:
+                    AI_win = True
         
         if value == 6 or value == 2:
             player_rank, player_trips = self.two_three_four(player_hand)
             AI_rank, AI_trips = self.two_three_four(AI_hand)
+            print(player_trips)
+            print(AI_trips)
             if AI_trips.rank > player_trips.rank:
                 AI_win = True
-            if AI_trips == player_trips:
+            if AI_trips.rank == player_trips.rank:
                 player_highcard = self.get_highcard(player_hand)
                 AI_highcard = self.get_highcard(AI_hand)
                 if AI_highcard.rank > player_highcard.rank:
                     AI_win = True
+                if AI_highcard.rank == player_highcard.rank:
+                    if AI_highcard.suite > player_highcard.suite:
+                        AI_win = True
 
         if value == 4 or value == 0:
             player_highcard = self.get_highcard(player_hand)
             AI_highcard = self.get_highcard(AI_hand)
-            if AI_highcard.rank > player_highcard.rank:
+            if AI_highcard.rank == 1 and player_highcard.rank != 1:
                 AI_win = True
+            if player_highcard.rank != 1:
+                if AI_highcard.rank > player_highcard.rank:
+                    AI_win = True
             if AI_highcard.rank == player_highcard.rank:
                 if AI_highcard.suite > player_highcard.suite:
                     AI_win = True
@@ -343,7 +354,3 @@ class Poker:
         print()
         print(result)
         return AI_win
-
-
-poker = Poker()
-poker.play_round('Player')
