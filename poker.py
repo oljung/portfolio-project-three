@@ -1,6 +1,7 @@
 from random import shuffle
 import operator
 from inputhandler import InputHandler
+import copy
 
 
 class Card:
@@ -30,7 +31,7 @@ class Deck:
     """
     def __init__(self):
         self.cards = []
-        self.buildDeck()
+        self.build_deck()
         self.shuffle()
 
 
@@ -103,7 +104,7 @@ class Hand(Deck):
         """
         length = InputHandler.input_integer_range('How many cards do you want to swap? 0-5: ', 0, 5)
         if length != 0:
-            positions = InputHandler.input_integer_sequence('Please select with cards as a number, like: 14 or 125')
+            positions = InputHandler.input_integer_sequence('Please select with cards as a number, like: 14 or 125', length)
             for pos in positions:
                 self.cards.pop(pos-1)# the values in position will be fron 1-5, index of cards is from 0-4
                 self.cards.insert(pos-1, deck.deal())
@@ -124,16 +125,16 @@ class Ranking:
     of the game
     """
     rankings = [
-        'Straight Flush',
-        'narf'# value used to properly align straigh flush index (straight + flush = 9)
-        'Quads',
-        'Full House',
-        'Flush',
-        'Straight',
-        'Trips',
-        'Two Pair',
+        'High Card',
         'Pair',
-        'High Card'
+        'Two Pair',
+        'Trips',
+        'Straight',
+        'Flush',
+        'Full House',
+        'Quads',
+        'narf',# value used to properly align straigh flush index (straight + flush = 9)
+        'Straight Flush'
     ]
 
 
@@ -146,7 +147,8 @@ class Ranking:
         value += self.flush(hand)
         value += self.straight(hand)
         if value == 0: # only needs to run if value is still zero. You can't have a pair and straight/flush at the same time
-            value += self.two_three_four(hand)
+            rank_value, second_card = self.two_three_four(hand)
+            value += rank_value
         return value, self.rankings[value]
 
     
@@ -216,7 +218,7 @@ class Ranking:
             value = 3
         if same == 2 and first_same != 2:
             value = 2
-        if same != 1:
+        if same == 1:
             value = 1
         return value, second_card
     
@@ -227,10 +229,11 @@ class Ranking:
         of equal rank
         """
         return_card = None
-        cards = hand.get_cards()
+        cards_to_copy = hand.get_cards()
+        cards = copy.deepcopy(cards_to_copy)
         card_found = False
-        while not card_found:
-            for i in range(4):
+        for i in range(4):
+            if not card_found:
                 card = cards.pop(0)
                 for c in cards:# compare the removed card to the remaining cards in list
                     if card.rank == c.rank:
@@ -258,6 +261,7 @@ class Ranking:
         """
         player_value, player_ranking = self.rank_hand(player_hand)
         AI_value, AI_ranking = self.rank_hand(AI_hand)
+        print(player_value, AI_value)
         result = ''
         AI_win = False
         if player_value > AI_value:
@@ -286,23 +290,60 @@ class Ranking:
         if value == 7 or value == 3 or value == 1:
             player_set = self.determine_first_card_in_set(player_hand)
             AI_set = self.determine_first_card_in_set(AI_hand)
-            if AI_set > player_set:
+            if AI_set.rank > player_set.rank:
                 AI_win = True
         
         if value == 6 or value == 2:
             player_rank, player_trips = self.two_three_four(player_hand)
             AI_rank, AI_trips = self.two_three_four(AI_hand)
-            if AI_trips > player_trips:
+            if AI_trips.rank > player_trips.rank:
                 AI_win = True
             if AI_trips == player_trips:
                 player_highcard = self.get_highcard(player_hand)
                 AI_highcard = self.get_highcard(AI_hand)
-                if AI_highcard > player_highcard:
+                if AI_highcard.rank > player_highcard.rank:
                     AI_win = True
 
         if value == 4 or value == 0:
             player_highcard = self.get_highcard(player_hand)
             AI_highcard = self.get_highcard(AI_hand)
-            if AI_highcard > player_highcard:
+            if AI_highcard.rank > player_highcard.rank:
                 AI_win = True
+            if AI_highcard.rank == player_highcard.rank:
+                if AI_highcard.suite > player_highcard.suite:
+                    AI_win = True
         return AI_win
+
+
+class Poker:
+    """
+    This class plays a round of poker using the other classes to do so
+    """
+    def play_round(self, name):
+        """
+        Plays a round of poker and returns the winner
+        """
+        deck = Deck()
+        player_hand = Hand(name)
+        AI_hand = Hand('AI')
+        player_hand.deal(deck, 5)
+        AI_hand.deal(deck, 5)
+        print()
+        print(player_hand)
+        print()
+        player_hand.swap_cards(deck)
+        print()
+        print(player_hand)
+        print(AI_hand)
+        ranking =  Ranking()
+        AI_win, result = ranking.determine_winner(player_hand, AI_hand)
+        print(player_hand)
+        print()
+        print(AI_hand)
+        print()
+        print(result)
+        return AI_win
+
+
+poker = Poker()
+poker.play_round('Player')
