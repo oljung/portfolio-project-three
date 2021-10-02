@@ -203,10 +203,10 @@ class Ranking:
             if 'previous_rank' in locals():
                 if card.rank == previous_rank:
                     same += 1
-                if card.rank == first_card_rank:
-                    first_same += 1
-                else:
-                    second_card = card
+                    if card.rank == first_card_rank:
+                        first_same += 1
+                    else:
+                        second_card = card
             previous_rank = card.rank
         if same == 3 and first_same == 3:
             value = 7
@@ -242,8 +242,67 @@ class Ranking:
 
 
     def get_highcard(self, hand):
+        """
+        Returns the card with the highest rank in hand
+        """
         cards = hand.get_cards()
         if cards[0].rank == 1:
             return cards[0]
         else:
             return cards[4]
+
+    
+    def determine_winner(self, player_hand, AI_hand):
+        """
+        Compare rankings between two hands to determine which hand is the best
+        """
+        player_value, player_ranking = self.rank_hand(player_hand)
+        AI_value, AI_ranking = self.rank_hand(AI_hand)
+        result = ''
+        AI_win = False
+        if player_value > AI_value:
+            result = f'{player_hand.name} wins the round with a {player_ranking}.'
+        elif AI_value > player_value:
+            AI_win = True
+            result = f'{AI_hand.name} wins the round with a {AI_ranking}.'
+        else:
+            AI_win = self.tiebreak(player_hand, AI_hand, player_value)
+            if not AI_win:
+                result = f'{player_hand.name} wins the round with a better {player_ranking}.'
+            else:
+                result = f'{AI_hand.name} wins the round with a better {AI_ranking}.'
+        return AI_win, result
+
+
+    def tiebreak(self, player_hand, AI_hand, value):
+        """
+        Decides the best hand when two hands have the same value
+        """
+        AI_win = False
+        if value == 9 or value == 5:
+            if AI_hand.get_cards()[0].suite > player_hand.get_cards()[0].suite:
+                AI_win = True
+
+        if value == 7 or value == 3 or value == 1:
+            player_set = self.determine_first_card_in_set(player_hand)
+            AI_set = self.determine_first_card_in_set(AI_hand)
+            if AI_set > player_set:
+                AI_win = True
+        
+        if value == 6 or value == 2:
+            player_rank, player_trips = self.two_three_four(player_hand)
+            AI_rank, AI_trips = self.two_three_four(AI_hand)
+            if AI_trips > player_trips:
+                AI_win = True
+            if AI_trips == player_trips:
+                player_highcard = self.get_highcard(player_hand)
+                AI_highcard = self.get_highcard(AI_hand)
+                if AI_highcard > player_highcard:
+                    AI_win = True
+
+        if value == 4 or value == 0:
+            player_highcard = self.get_highcard(player_hand)
+            AI_highcard = self.get_highcard(AI_hand)
+            if AI_highcard > player_highcard:
+                AI_win = True
+        return AI_win
