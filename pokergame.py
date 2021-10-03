@@ -11,6 +11,7 @@ class RunPoker:
         self.games_played = 0
         self.games_won = 0
         self.games_lost = 0
+        self.welcome_screen()
     
 
     def welcome_screen(self):
@@ -52,5 +53,21 @@ class RunPoker:
         'you can read more about them here:\n'+
         '"link to repo"\n'+
         'NOTE! Ctrl + c will terminate the app, use right click to copy')
+        answer = InputHandler.input_bool('Would you like to play a round? Y(es) or N(o): ')
+        if answer:
+            self.run_game()
+
+
+    def run_game(self):
+        """
+        Method that runs a round of poker and returns winner. 
+        After it updates the scores and ask for another round, calling itself if yes
+        """
+        game = Poker()
+        AI_win = game.play_round(self.name)
+        self.update_score(AI_win)
+        answer = InputHandler.input_bool('Would you like to play another round? Y(es) or N(o): ')
+        if answer:
+            self.run_game()
 
 
