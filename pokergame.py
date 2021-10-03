@@ -71,3 +71,21 @@ class RunPoker:
             self.run_game()
 
 
+    def update_scores(self, AI_win):
+        """
+        Updates the scores stored in instance of object 
+        for use in highscore table
+        """
+        self.games_played += 1
+        if not AI_win:
+            self.games_won += 1
+        else:
+            self.games_lost += 1
+
+
+    def prepare_highscore_item(self):
+        """
+        Prepares an item for use in highscore table
+        """
+        win_rate = round(self.games_won/self.games_played) * 100
+        return [self.name, self.games_played, self.games_won, self.games_lost, win_rate]
