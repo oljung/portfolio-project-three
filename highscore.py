@@ -52,6 +52,38 @@ class HighScoreManager:
         at least five rounds played
         """
         best_five = []
+        self.sort_list('item4')# average/winrate is stored in item4
+        for highscore in self.highscore_list:
+            if highscore.item1 >= 5:
+                best_five.append(highscore)
+        
+        if len(best_five) > 5:
+            if poker:
+                best_five = best_five[-5:]# if its poker, the highest 5 values are the best
+            else:
+                best_five = best_five[:5]# if mastermind, the lowest 5 values are the best
+        
+        self.print_heading()
+        for score in best_five:
+            print(score)
+
+
+    def show_results_by_player(self, name):
+        """
+        Method for displaying games made by a player 
+        with the given name
+        """
+        player_scores = []
+        for item in self.highscore_list:
+            if item.name == name:
+                player_scores.append(item)
+        
+        if not player_scores:
+            print('No player with that name has recorded a highscore')
+        else:
+            self.print_heading()
+            for item in player_scores:
+                print(item)
 
 
 class Highscore:
