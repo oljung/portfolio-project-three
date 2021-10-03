@@ -6,7 +6,7 @@ import copy
 
 class Card:
     """
-    This is a class for creating a card object that has a suite and a rank 
+    This is a class for creating a card object that has a suit and a rank 
     the cards are used to build a deck
     """
     suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
@@ -38,7 +38,7 @@ class Deck:
     def build_deck(self):
         """
         This method iterates through the lists in Card to create 
-        13 Card objects for each of the four suites and appends them 
+        13 Card objects for each of the four suits and appends them 
         all in the list cards
         """
         for suit in range(0, 4):
@@ -283,7 +283,7 @@ class Ranking:
         """
         AI_win = False
         if value == 9 or value == 5:
-            if AI_hand.get_cards()[0].suite > player_hand.get_cards()[0].suite:
+            if AI_hand.get_cards()[0].suit > player_hand.get_cards()[0].suit:
                 AI_win = True
 
         if value == 7 or value == 3 or value == 1:
@@ -306,7 +306,7 @@ class Ranking:
                 if AI_highcard.rank > player_highcard.rank:
                     AI_win = True
                 if AI_highcard.rank == player_highcard.rank:
-                    if AI_highcard.suite > player_highcard.suite:
+                    if AI_highcard.suit > player_highcard.suit:
                         AI_win = True
 
         if value == 4 or value == 0:
@@ -318,7 +318,7 @@ class Ranking:
                 if AI_highcard.rank > player_highcard.rank:
                     AI_win = True
             if AI_highcard.rank == player_highcard.rank:
-                if AI_highcard.suite > player_highcard.suite:
+                if AI_highcard.suit > player_highcard.suit:
                     AI_win = True
         return AI_win
 
@@ -341,8 +341,6 @@ class Poker:
         print()
         player_hand.swap_cards(deck)
         print()
-        print(player_hand)
-        print(AI_hand)
         ranking =  Ranking()
         AI_win, result = ranking.determine_winner(player_hand, AI_hand)
         print(player_hand)
