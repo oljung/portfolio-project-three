@@ -109,4 +109,4 @@ class RunMastermind:
         updating a highscore table
         """
         average_score = round(sum(self.result_list)/len(self.result_list),2)# average score of rounds played, rounded to two decimals
-        return [self.name, len(self.result_list), average_score, self.best_score, self.worst_score]
+        return [self.name, len(self.result_list), self.worst_score, self.best_score, average_score]
