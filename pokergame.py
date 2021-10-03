@@ -65,7 +65,7 @@ class RunPoker:
         """
         game = Poker()
         AI_win = game.play_round(self.name)
-        self.update_score(AI_win)
+        self.update_scores(AI_win)
         answer = InputHandler.input_bool('Would you like to play another round? Y(es) or N(o): ')
         if answer:
             self.run_game()
