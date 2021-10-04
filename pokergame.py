@@ -87,5 +87,8 @@ class RunPoker:
         """
         Prepares an item for use in highscore table
         """
-        win_rate = round(self.games_won/self.games_played) * 100
-        return [self.name, self.games_played, self.games_won, self.games_lost, win_rate]
+        if len(self.games_played) == 0:
+            return False
+        else:
+            win_rate = round(self.games_won/self.games_played) * 100
+            return [self.name, self.games_played, self.games_won, self.games_lost, win_rate]

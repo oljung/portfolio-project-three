@@ -45,17 +45,19 @@ class Menu:
 
         if answer == 1:
             mastermind = RunMastermind(self.name)
-            update = InputHandler.input_bool('Would you like to update highscore? Y(es) N(o): ')
-            if update:
-                data = mastermind.prepare_highscore_item()
-                WorksheetHandler.update_worksheet('mastermind', data)
+            data = mastermind.prepare_highscore_item()
+            if data:
+                update = InputHandler.input_bool('Would you like to update highscore? Y(es) N(o): ')
+                if update:
+                    WorksheetHandler.update_worksheet('mastermind', data)
         
         if answer == 2:
             poker = RunPoker(self.name)
-            update = InputHandler.input_bool('Would you like to update highscore? Y(es) N(o): ')
-            if update:
-                data = poker.prepare_highscore_item()
-                WorksheetHandler.update_worksheet('poker', data)
+            data = poker.prepare_highscore_item()
+            if data:
+                update = InputHandler.input_bool('Would you like to update highscore? Y(es) N(o): ')
+                if update:
+                    WorksheetHandler.update_worksheet('poker', data)
         
         if answer == 3:
             self.show_highscore_menu()
