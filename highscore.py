@@ -103,4 +103,4 @@ class Highscore:
         """
         Sets the default return value when print(highscore) is called
         """
-        return f'{self.name}\t{self.item1}\t{self.item2}\t{self.item3}\t{self.item4}'
+        return f'{self.name}\t{self.item1}\t\t{self.item2}\t\t{self.item3}\t\t{self.item4}'
