@@ -12,6 +12,7 @@ class Menu:
     """
     def __init__(self):
         self.welcome_screen()
+        self.name = InputHandler.input_name('Please enter your name: ')
         self.select_option()
     
 
@@ -26,6 +27,7 @@ class Menu:
         print('Mastermind is a game of logic, trying to figure out a secret code.')
         print('Poker is a standard 5-card poker, where you are allowed on swap')
         print('Further instructions are provided when you start each game')
+        print()
     
 
     def select_option(self):
@@ -42,14 +44,14 @@ class Menu:
         answer = InputHandler.input_integer_range('Your choice: ', 0, 4)
 
         if answer == 1:
-            mastermind = RunMastermind()
+            mastermind = RunMastermind(self.name)
             update = InputHandler.input_bool('Would you like to update highscore? Y(es) N(o): ')
             if update:
                 data = mastermind.prepare_highscore_item()
                 WorksheetHandler.update_worksheet('mastermind', data)
         
         if answer == 2:
-            poker = RunPoker()
+            poker = RunPoker(self.name)
             update = InputHandler.input_bool('Would you like to update highscore? Y(es) N(o): ')
             if update:
                 data = poker.prepare_highscore_item()
@@ -63,3 +65,54 @@ class Menu:
         
         if answer != 0:
             self.select_option()
+
+
+    def show_highscore_menu(self, poker=False):
+        """
+        Shows a menu on what to do with the highscore 
+        information
+        """
+        worksheet = ''
+        if poker:
+            worksheet = 'poker'
+        else:
+            worksheet = 'mastermind'
+
+        data = WorksheetHandler.get_worksheet_data(worksheet)
+        highscore = HighScoreManager(data, poker)
+        line1 = '1. Show results sorted by rounds played'
+        line2 = '2. '
+        line3 = '3. '
+        line4 = '4. Show results by player'
+        if poker:
+            line3 += 'Show best five scores sorted by winrate'
+            line2 += 'Show results sorted by games won'
+        else:
+            line2 += 'Show results sorted by best score'
+            line3 += 'Show best five scores sorted by average score'
+        
+        print('Please select an option:')
+        print(line1)
+        print(line2)
+        print(line3)
+        print(line4)
+        print('0. Back to main menu')
+
+        answer = InputHandler.input_integer_range('Your choice: ', 0, 4)
+
+        if answer == 1:
+            highscore.sort_list('item1')
+            highscore.print_table()
+        
+        if answer == 2:
+            highscore.sort_list('item2')
+        
+        if answer == 3:
+            highscore.show_best_five(poker)
+        
+        if answer == 4:
+            name = InputHandler.input_name('Please enter the name to display results for: ')
+            highscore.show_results_by_player(name)
+        
+        if answer != 0:
+            self.show_highscore_menu(poker)
