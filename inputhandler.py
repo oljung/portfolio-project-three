@@ -67,3 +67,19 @@ class InputHandler:
                 break
             else:
                 print('please enter value y(es) or n(o)\n')
+    
+
+    def input_name(message):
+        """
+        Method for handling name input, making sure 
+        string is not empty and not more than 6 characters
+        """
+        while(True):
+            name = input(message)
+            if not name:
+                print('Please enter a name, can not be blank')
+            elif len(name) > 6:
+                print('Your name can not be longer than 6 characters')
+            else:
+                return name
+                break
