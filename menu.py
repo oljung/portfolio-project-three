@@ -93,12 +93,14 @@ class Menu:
             line2 += 'Show results sorted by best score'
             line3 += 'Show best five scores sorted by average score'
         
+        print()
         print('Please select an option:')
         print(line1)
         print(line2)
         print(line3)
         print(line4)
         print('0. Back to main menu')
+        print()
 
         answer = InputHandler.input_integer_range('Your choice: ', 0, 4)
 

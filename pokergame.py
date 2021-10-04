@@ -19,6 +19,7 @@ class RunPoker:
         Method for showing a welcome screen to player with 
         information about the game and how to play
         """
+        print()
         print('P*O*K*E*R')
         print('Welcome to a 5-card poker game,\n'+
         'The goal is the get a better hand than the AI.')

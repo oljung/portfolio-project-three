@@ -41,6 +41,7 @@ class HighScoreManager:
         Prints header and the items in highscore_list 
         formatted as a table
         """
+        print()
         self.print_heading()
         for item in self.highscore_list:
             print(item)
@@ -63,6 +64,7 @@ class HighScoreManager:
             else:
                 best_five = best_five[:5]# if mastermind, the lowest 5 values are the best
         
+        print()
         self.print_heading()
         for score in best_five:
             print(score)
@@ -78,6 +80,7 @@ class HighScoreManager:
             if item.name == name:
                 player_scores.append(item)
         
+        print()
         if not player_scores:
             print('No player with that name has recorded a highscore')
         else:

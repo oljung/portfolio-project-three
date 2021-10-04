@@ -22,6 +22,7 @@ class RunMastermind:
         This method runs a welcome screen informing the user of what 
         this is and how to play it
         """
+        print()
         print('*M*A*S*T*E*R*M*I*N*D*')
         print('Welcome to Mastermind!')
         print('The goal of this game is to guess the secret code.\n' + 
