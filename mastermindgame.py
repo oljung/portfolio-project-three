@@ -95,6 +95,10 @@ class RunMastermind:
         """
         self.result_list.append(score)
         
+        if self.best_score == 0 and self.worst_score == 0:
+            self.best_score = score
+            self.worst_score = score
+
         if score < self.best_score:
             self.best_score = score
         
@@ -113,4 +117,4 @@ class RunMastermind:
             return False
         else:
             average_score = round(sum(self.result_list)/len(self.result_list),2)# average score of rounds played, rounded to two decimals
-            return [self.name, len(self.result_list), self.worst_score, self.best_score, average_score]
+            return [self.name, len(self.result_list), self.best_score, self.worst_score, average_score]
