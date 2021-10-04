@@ -58,7 +58,7 @@ class HighScoreManager:
             if highscore.item1 >= 5:
                 best_five.append(highscore)
         
-        if len(best_five) > 5:
+        if len(best_five) >= 5:
             if poker:
                 best_five = best_five[-5:]# if its poker, the highest 5 values are the best
             else:
