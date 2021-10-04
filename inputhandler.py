@@ -10,7 +10,7 @@ class InputHandler:
         """
         while(True):
             try:
-                num = int(input(message))
+                num = int(input(message + '\n'))
                 if num >= low and num <= high:
                     return num
                     break
@@ -27,7 +27,7 @@ class InputHandler:
         """
         while(True):
             try:
-                numbers = [int(i) for i in str(input(message))]
+                numbers = [int(i) for i in str(input(message + '\n'))]
                 if len(numbers) == length:
                     return numbers
                     break
@@ -44,7 +44,7 @@ class InputHandler:
         """
         while(True):
             try:
-                    num = int(input(message))
+                    num = int(input(message + '\n'))
                     return num
                     break
             except:
@@ -58,7 +58,7 @@ class InputHandler:
         will run until valid input is given
         """
         while(True):
-            value = input(message)
+            value = input(message + '\n')
             if value.lower() == 'y':
                 return True
                 break
@@ -75,7 +75,7 @@ class InputHandler:
         string is not empty and not more than 6 characters
         """
         while(True):
-            name = input(message)
+            name = input(message + '\n')
             if not name:
                 print('Please enter a name, can not be blank')
             elif len(name) > 6:
