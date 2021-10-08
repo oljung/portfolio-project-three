@@ -10,7 +10,21 @@ class Card:
     the cards are used to build a deck
     """
     suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
-    ranks = ["narf", "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
+    ranks = [
+        "narf",
+        "Ace",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8", 
+        "9",
+        "10",
+        "Jack",
+        "Queen",
+        "King"]
 
     def __init__(self, suit=0, rank=0):
         self.suit = suit
@@ -95,11 +109,14 @@ class Hand(Deck):
         in the hand object by replacing with a new card from
         the deck
         """
-        length = InputHandler.input_integer_range('How many cards do you want to swap? 0-5: ', 0, 5)
+        length = InputHandler.input_integer_range('How\
+             many cards do you want to swap? 0-5: ', 0, 5)
         if length != 0:
-            positions = InputHandler.input_integer_sequence('Please select with cards as a number, like: 14 or 125: ', length)
+            positions = InputHandler.input_integer_sequence('Please\
+                 select with cards as a number, like: 14 or 125: ', length)
             for pos in positions:
-                self.cards.pop(pos-1)  # the values in position will be fron 1-5, index of cards is from 0-4
+                # the values in position will be fron 1-5
+                self.cards.pop(pos-1)
                 self.cards.insert(pos-1, deck.deal())
             self.sort_hand()
 
@@ -107,7 +124,9 @@ class Hand(Deck):
         """
         Changing the default return value for print(hand)
         """
-        return f'Hand of {self.name} contains:\n {self.cards[0]}\n  {self.cards[1]}\n   {self.cards[2]}\n    ' \
+        return f'Hand of {self.name} \
+            contains:\n {self.cards[0]}\n  \
+                {self.cards[1]}\n   {self.cards[2]}\n    ' \
                 f'{self.cards[3]}\n     {self.cards[4]}\n'
 
 
@@ -125,7 +144,8 @@ class Ranking:
         'Flush',
         'Full House',
         'Quads',
-        'narf',  # value used to properly align straigh flush index (straight + flush = 9)
+        # value used to properly align straigh flush index
+        'narf',
         'Straight Flush'
     ]
 
@@ -137,7 +157,9 @@ class Ranking:
         value = 0
         value += self.flush(hand)
         value += self.straight(hand)
-        if value == 0:  # only needs to run if value is still zero. You can't have a pair and straight/flush at the same time
+        # only needs to run if value is still zero.
+        # You can't have a pair and straight/flush at the same time
+        if value == 0:
             rank_value, second_card = self.two_three_four(hand)
             value += rank_value
         return value, self.rankings[value]
@@ -184,7 +206,8 @@ class Ranking:
         value = 0
         first_card = self.determine_first_card_in_set(hand)
         first_card_rank = 0
-        second_card = None  # This card is used for determining rank of highest 2nd pair in a tie
+        # This card is used for determining rank of highest 2nd pair in a tie
+        second_card = None
         same = 0
         first_same = 0
         if first_card is not None:
@@ -222,7 +245,8 @@ class Ranking:
         for i in range(4):
             if not card_found:
                 card = cards.pop(0)
-                for c in cards:  # compare the removed card to the remaining cards in list
+                # compare the removed card to the remaining cards in list
+                for c in cards:
                     if card.rank == c.rank:
                         return_card = card
                         card_found = True
@@ -249,16 +273,19 @@ class Ranking:
         result = ''
         AI_win = False
         if player_value > AI_value:
-            result = f'{player_hand.name} wins the round with a {player_ranking}.'
+            result = f'{player_hand.name} wins the round \
+                with a {player_ranking}.'
         elif AI_value > player_value:
             AI_win = True
             result = f'{AI_hand.name} wins the round with a {AI_ranking}.'
         else:
             AI_win = self.tiebreak(player_hand, AI_hand, player_value)
             if not AI_win:
-                result = f'{player_hand.name} wins the round with a better {player_ranking}.'
+                result = f'{player_hand.name} wins the round with\
+                     a better {player_ranking}.'
             else:
-                result = f'{AI_hand.name} wins the round with a better {AI_ranking}.'
+                result = f'{AI_hand.name} wins the round \
+                    with a better {AI_ranking}.'
         return AI_win, result
 
     def tiebreak(self, player_hand, AI_hand, value):
