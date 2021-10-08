@@ -6,7 +6,7 @@ import copy
 
 class Card:
     """
-    This is a class for creating a card object that has a suit and a rank 
+    This is a class for creating a card object that has a suit and a rank
     the cards are used to build a deck
     """
     suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
@@ -16,17 +16,17 @@ class Card:
         self.suit = suit
         self.rank = rank
 
-
     def __str__(self):
         """
-        This function sets the default value returned when print(card) is called
+        This function sets the default value returned when print(card)
+        is called
         """
         return f'{self.ranks[self.rank]} of {self.suits[self.suit]}'
 
 
 class Deck:
     """
-    This class builds a deck of objects from Card 
+    This class builds a deck of objects from Card
     the deck will then be used to build a hand and to deal new cards
     """
     def __init__(self):
@@ -34,29 +34,26 @@ class Deck:
         self.build_deck()
         self.shuffle()
 
-
     def build_deck(self):
         """
-        This method iterates through the lists in Card to create 
-        13 Card objects for each of the four suits and appends them 
+        This method iterates through the lists in Card to create
+        13 Card objects for each of the four suits and appends them
         all in the list cards
         """
         for suit in range(0, 4):
-            for rank in range(1,14):
+            for rank in range(1, 14):
                 self.cards.append(Card(suit, rank))
-
 
     def shuffle(self):
         """
-        This method shuffles the list "cards" making 
+        This method shuffles the list "cards" making
         the order random
         """
         shuffle(self.cards)
 
-
     def deal(self):
         """
-        This method is used to deal cards from the deck 
+        This method is used to deal cards from the deck
         by removing and returning the last card in the list
         """
         return self.cards.pop()
@@ -64,23 +61,21 @@ class Deck:
 
 class Hand(Deck):
     """
-    This class creates and object containing cards from 
+    This class creates and object containing cards from
     the Deck class and methods for drawing and replacing cards
     """
     def __init__(self, name=''):
         self.cards = []
         self.name = name
-    
 
     def deal(self, deck, cards):
         """
-        This method is used to deal a new hand 
+        This method is used to deal a new hand
         and sort it based on card rank
         """
         while len(self.cards) < cards:
             self.cards.append(deck.deal())
         self.sort_hand()
-    
 
     def sort_hand(self):
         """
@@ -88,28 +83,25 @@ class Hand(Deck):
         """
         self.cards.sort(key=operator.attrgetter('rank'))
 
-
     def get_cards(self):
         """
         Returns the list of cards in the hand object
         """
         return self.cards
 
-
     def swap_cards(self, deck):
         """
-        Method for swapping cards in list of cards 
-        in the hand object by replacing with a new card from 
+        Method for swapping cards in list of cards
+        in the hand object by replacing with a new card from
         the deck
         """
         length = InputHandler.input_integer_range('How many cards do you want to swap? 0-5: ', 0, 5)
         if length != 0:
             positions = InputHandler.input_integer_sequence('Please select with cards as a number, like: 14 or 125: ', length)
             for pos in positions:
-                self.cards.pop(pos-1)# the values in position will be fron 1-5, index of cards is from 0-4
+                self.cards.pop(pos-1)  # the values in position will be fron 1-5, index of cards is from 0-4
                 self.cards.insert(pos-1, deck.deal())
             self.sort_hand()
-
 
     def __str__(self):
         """
@@ -121,7 +113,7 @@ class Hand(Deck):
 
 class Ranking:
     """
-    Class for handling the ranking of a hand for determining winning hand 
+    Class for handling the ranking of a hand for determining winning hand
     of the game
     """
     rankings = [
@@ -133,25 +125,23 @@ class Ranking:
         'Flush',
         'Full House',
         'Quads',
-        'narf',# value used to properly align straigh flush index (straight + flush = 9)
+        'narf',  # value used to properly align straigh flush index (straight + flush = 9)
         'Straight Flush'
     ]
 
-
     def rank_hand(self, hand):
         """
-        Ranks the value of a hand and returns the ranking and 
+        Ranks the value of a hand and returns the ranking and
         value for use in comparing hands
         """
         value = 0
         value += self.flush(hand)
         value += self.straight(hand)
-        if value == 0: # only needs to run if value is still zero. You can't have a pair and straight/flush at the same time
+        if value == 0:  # only needs to run if value is still zero. You can't have a pair and straight/flush at the same time
             rank_value, second_card = self.two_three_four(hand)
             value += rank_value
         return value, self.rankings[value]
 
-    
     def flush(self, hand):
         """
         Determines if the hand ranking is flush
@@ -167,7 +157,6 @@ class Ranking:
             value = 5
         return value
 
-
     def straight(self, hand):
         """
         Determines if the hand ranking is straight
@@ -177,29 +166,28 @@ class Ranking:
         for card in hand.get_cards():
             if 'previous_rank' in locals():
                 if card.rank == 1:
-                    if card.rank == previous_rank + 1 or card.rank == previous_rank +9:
+                    if card.rank == previous_rank + 1 or card.rank == previous_rank + 9:
                         connected += 1
                 else:
                     if card.rank == previous_rank + 1:
-                        connected +=1
+                        connected += 1
             previous_rank = card.rank
         if connected == 4:
             value = 4
         return value
 
-
     def two_three_four(self, hand):
         """
-        Method for determining of hand has a pair, two pair, trips, 
+        Method for determining of hand has a pair, two pair, trips,
         quads of full house
         """
         value = 0
         first_card = self.determine_first_card_in_set(hand)
         first_card_rank = 0
-        second_card = None # This card is used for determining rank of highest 2nd pair in a tie
+        second_card = None  # This card is used for determining rank of highest 2nd pair in a tie
         same = 0
         first_same = 0
-        if first_card != None:
+        if first_card is not None:
             first_card_rank = first_card.rank
         for card in hand.get_cards():
             if 'previous_rank' in locals():
@@ -221,11 +209,10 @@ class Ranking:
         if same == 1:
             value = 1
         return value, second_card
-    
 
     def determine_first_card_in_set(self, hand):
         """
-        used to determine first card in a set of cards 
+        used to determine first card in a set of cards
         of equal rank
         """
         return_card = None
@@ -235,14 +222,13 @@ class Ranking:
         for i in range(4):
             if not card_found:
                 card = cards.pop(0)
-                for c in cards:# compare the removed card to the remaining cards in list
+                for c in cards:  # compare the removed card to the remaining cards in list
                     if card.rank == c.rank:
                         return_card = card
                         card_found = True
                         break
 
         return return_card
-
 
     def get_highcard(self, hand):
         """
@@ -254,7 +240,6 @@ class Ranking:
         else:
             return cards[4]
 
-    
     def determine_winner(self, player_hand, AI_hand):
         """
         Compare rankings between two hands to determine which hand is the best
@@ -276,7 +261,6 @@ class Ranking:
                 result = f'{AI_hand.name} wins the round with a better {AI_ranking}.'
         return AI_win, result
 
-
     def tiebreak(self, player_hand, AI_hand, value):
         """
         Decides the best hand when two hands have the same value
@@ -294,7 +278,7 @@ class Ranking:
             if player_set.rank != 1:
                 if AI_set.rank > player_set.rank:
                     AI_win = True
-        
+
         if value == 6 or value == 2:
             player_rank, player_trips = self.two_three_four(player_hand)
             AI_rank, AI_trips = self.two_three_four(AI_hand)
@@ -346,7 +330,7 @@ class Poker:
         print()
         player_hand.swap_cards(deck)
         print()
-        ranking =  Ranking()
+        ranking = Ranking()
         AI_win, result = ranking.determine_winner(player_hand, AI_hand)
         print(player_hand)
         print()
