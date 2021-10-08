@@ -298,16 +298,21 @@ class Ranking:
         if value == 6 or value == 2:
             player_rank, player_trips = self.two_three_four(player_hand)
             AI_rank, AI_trips = self.two_three_four(AI_hand)
-            if AI_trips.rank > player_trips.rank:
+            player_set = self.determine_first_card_in_set(player_hand)
+            AI_set = self.determine_first_card_in_set(AI_hand)
+            if AI_set.rank == 1 and player_set.rank != 1:
                 AI_win = True
-            if AI_trips.rank == player_trips.rank:
-                player_highcard = self.get_highcard(player_hand)
-                AI_highcard = self.get_highcard(AI_hand)
-                if AI_highcard.rank > player_highcard.rank:
+            if player_set.rank != 1:
+                if AI_trips.rank > player_trips.rank:
                     AI_win = True
-                if AI_highcard.rank == player_highcard.rank:
-                    if AI_highcard.suit > player_highcard.suit:
+                if AI_trips.rank == player_trips.rank:
+                    player_highcard = self.get_highcard(player_hand)
+                    AI_highcard = self.get_highcard(AI_hand)
+                    if AI_highcard.rank > player_highcard.rank:
                         AI_win = True
+                    if AI_highcard.rank == player_highcard.rank:
+                        if AI_highcard.suit > player_highcard.suit:
+                            AI_win = True
 
         if value == 4 or value == 0:
             player_highcard = self.get_highcard(player_hand)
