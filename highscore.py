@@ -26,6 +26,11 @@ class HighScoreManager:
         key_value as key with operator.attrgetter
         """
         self.highscore_list.sort(key=operator.attrgetter(key_value))
+        
+        if not self.poker and key_value == 'item2':
+            pass  # Mastmind score does not need to be reversed
+        else:
+            self.highscore_list.reverse()
 
     def print_heading(self):
         """

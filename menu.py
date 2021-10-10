@@ -115,6 +115,7 @@ class Menu:
 
         if answer == CHOICE_SHOW_WIN_BEST:
             highscore.sort_list('item2')
+            highscore.print_table()
 
         if answer == CHOICE_SHOW_BEST_5:
             highscore.show_best_five(poker)
