@@ -45,7 +45,8 @@ class RunPoker:
     def run_game(self):
         """
         Method that runs a round of poker and returns winner.
-        After it updates the scores and ask for another round, calling itself if yes
+        After it updates the scores and ask for another round,
+        calling itself if yes
         """
         game = Poker()
         AI_win = game.play_round(self.name)

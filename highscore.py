@@ -37,7 +37,7 @@ class HighScoreManager:
         Prints the heading formatted as a table
         """
         print(f'{self.heading[0]}\t{self.heading[1]}\t{self.heading[2]}'\
-            f't{self.heading[3]}\t{self.heading[4]}\t')
+            f'\t{self.heading[3]}\t{self.heading[4]}\t')
 
     def print_table(self):
         """
