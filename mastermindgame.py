@@ -34,11 +34,14 @@ class RunMastermind:
         print('This means the following:\n' +
               'The first number, 1, is in the correct position\n' +
               'The second number, 2, is not included in the secret code\n' +
-              'The third number, 3, is in the code but is in the wrong position\n' +
+              'The third number, 3,' + 
+              ' is in the code but is in the wrong position\n' +
               'The fourth number, 4, is not included in the code')
-        print('When you have the correct numbers in the right place, you win!\n' +
+        print('When you have the correct numbers ' +
+              'in the right place, you win!\n' +
               'Try to beat the game in as few guesses as possible.\n' +
-              'The first thing you will do is decide if you want standard or custom game.\n' +
+              'The first thing you will do is decide if' +
+              'you want standard or custom game.\n' +
               'Only the standard game can save you highscore')
 
     def select_game_type(self):
@@ -52,7 +55,7 @@ class RunMastermind:
         print('1. Standard game')
         print('2. Custom game, set your rules')
         print('0. Back to main menu')
-        answer = InputHandler.input_integer_range('Please make a choice: ', 0, 2)
+        answer = InputHandler.input_integer_range('Your choice: ', 0, 2)
         if answer == 1:
             self.run_game()
         if answer == 2:
@@ -66,7 +69,7 @@ class RunMastermind:
         for another game and call itself using custom for same gametype
         in loop
         """
-        # update instance variable, used for determining saving highscore or not
+        # used for determining saving highscore or not
         self.custom = custom
         game = None
         if not custom:
@@ -74,8 +77,10 @@ class RunMastermind:
         else:  # The user gets to set custom rules for the game
             correct_range = False
             while not correct_range:
-                low = InputHandler.input_integer_range('Please select the lowest number: ', 0, 8)
-                high = InputHandler.input_integer_range('Please select the highest number: ', 1, 9)
+                message_low = 'Please select the lowest number: '
+                message_high = 'Please select the highest number: '
+                low = InputHandler.input_integer_range(message_low, 0, 8)
+                high = InputHandler.input_integer_range(message_high, 1, 9)
                 if high - low > 0:
                     correct_range = True
             length = InputHandler.input_integer('Please select a lenght: ')
@@ -83,7 +88,8 @@ class RunMastermind:
 
         score = game.play()
         self.update_scores(score)
-        play_again = InputHandler.input_bool('Would you like to play another round? Y(es) or N(no): ')
+        message = 'Would you like to play another round? Y(es) or N(no): '
+        play_again = InputHandler.input_bool(message)
         if play_again:
             self.run_game(custom)
 
