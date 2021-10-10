@@ -109,11 +109,11 @@ class Hand(Deck):
         in the hand object by replacing with a new card from
         the deck
         """
-        length = InputHandler.input_integer_range('How\
-             many cards do you want to swap? 0-5: ', 0, 5)
+        length = InputHandler.input_integer_range('How'\
+             'many cards do you want to swap? 0-5: ', 0, 5)
         if length != 0:
-            positions = InputHandler.input_integer_sequence('Please\
-                 select with cards as a number, like: 14 or 125: ', length)
+            positions = InputHandler.input_integer_sequence('Please' \
+                 'select with cards as a number, like: 14 or 125: ', length)
             for pos in positions:
                 # the values in position will be fron 1-5
                 self.cards.pop(pos-1)
@@ -124,9 +124,8 @@ class Hand(Deck):
         """
         Changing the default return value for print(hand)
         """
-        return f'Hand of {self.name} \
-            contains:\n {self.cards[0]}\n  \
-                {self.cards[1]}\n   {self.cards[2]}\n    ' \
+        return f'Hand of {self.name} contains:\n {self.cards[0]}\n ' \
+            f' {self.cards[1]}\n   {self.cards[2]}\n    ' \
                 f'{self.cards[3]}\n     {self.cards[4]}\n'
 
 
@@ -273,19 +272,19 @@ class Ranking:
         result = ''
         AI_win = False
         if player_value > AI_value:
-            result = f'{player_hand.name} wins the round \
-                with a {player_ranking}.'
+            result = f'{player_hand.name} wins the round' \
+                f'with a {player_ranking}.'
         elif AI_value > player_value:
             AI_win = True
             result = f'{AI_hand.name} wins the round with a {AI_ranking}.'
         else:
             AI_win = self.tiebreak(player_hand, AI_hand, player_value)
             if not AI_win:
-                result = f'{player_hand.name} wins the round with\
-                     a better {player_ranking}.'
+                result = f'{player_hand.name} wins the round with' \
+                     f'a better {player_ranking}.'
             else:
-                result = f'{AI_hand.name} wins the round \
-                    with a better {AI_ranking}.'
+                result = f'{AI_hand.name} wins the round' \
+                    f'with a better {AI_ranking}.'
         return AI_win, result
 
     def tiebreak(self, player_hand, AI_hand, value):

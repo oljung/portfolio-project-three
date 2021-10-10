@@ -36,8 +36,8 @@ class HighScoreManager:
         """
         Prints the heading formatted as a table
         """
-        print(f'{self.heading[0]}\t{self.heading[1]}\t{self.heading[2]}\
-            \t{self.heading[3]}\t{self.heading[4]}\t')
+        print(f'{self.heading[0]}\t{self.heading[1]}\t{self.heading[2]}'\
+            f't{self.heading[3]}\t{self.heading[4]}\t')
 
     def print_table(self):
         """
@@ -108,5 +108,5 @@ class Highscore:
         """
         Sets the default return value when print(highscore) is called
         """
-        return f'{self.name}\t{self.item1}\t\t{self.item2}\
-            \t\t{self.item3}\t\t{self.item4}'
+        return f'{self.name}\t{self.item1}\t\t{self.item2}'\
+            f'\t\t{self.item3}\t\t{self.item4}'

@@ -41,16 +41,16 @@ class Mastermind:
         a valid number sequence is entered
         """
         correct_number_values = False
+        message = f'Enter a number of {self.length}' \
+            f' numbers between {self.nr_low} and {self.nr_high}: '
         while not correct_number_values:
-            guess = InputHandler.input_integer_sequence(f'Enter a number of \
-                {self.length} numbers between {self.nr_low} and \
-                    {self.nr_high} please: ', self.length)
+            guess = InputHandler.input_integer_sequence(message, self.length)
             for num in guess:
                 if num >= self.nr_low and num <= self.nr_high:
                     correct_number_values = True
                 else:
-                    print(f'{num} is not within desired range, \
-                    {self.nr_low} and {self.nr_high}\n')
+                    print(f'{num} is not within desired range,'\
+                        f' {self.nr_low} and {self.nr_high}\n')
         return guess
 
     def check_code(self, secret_code, guessed_code):
