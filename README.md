@@ -55,7 +55,7 @@ The main audience for this game is players who enjoy logic puzzles or the probab
 - As a user, I want to play a game of Poker
 - As a user, I want a logic challenge that is consistent and understandable. I want the results to reflect how I play
 - As a user, I want to be able to save my score
-- As a user, I want to be able to view hoghscore and compare my own score against that
+- As a user, I want to be able to view highscore and compare my own score against that
 
 ### 1.6 How To Play
 
@@ -65,8 +65,8 @@ The main audience for this game is players who enjoy logic puzzles or the probab
     - The game will tell you how you did by showing result, and it wil look like this: <br>
     ![mastermind guess](assets\readme-images\mastermind-guess.png)
     - A number will mean that the number is correct, in this picture none of the guesses were correct.
-    - A C will mean that the number is in the code, but in the wrong position
-    - A - means that the number is not included in the code.
+    - A 'C' will mean that the number is in the code, but in the wrong position
+    - A '-' means that the number is not included in the code.
     - Evaluate your result and make a new guess, and continue until you beat the code, the game will then tell you how you did and ask if you want another round, like this:<br>
     ![mastermind win](assets\readme-images\mastermind-won.png)
 - Poker:
@@ -81,10 +81,25 @@ The main audience for this game is players who enjoy logic puzzles or the probab
 - Both games will allow you to update highscores. If you play more than 5 rounds, you can compare your score against the top players of each game.
 
 ### 2.1 Existing features
-
+- Welcoming menu
+    - Will welcome players and give short information about how to play the game<br>
+    ![welcome menu](assets\readme-images\menu.png)
+- Two seperate games, providing unique challenges to the player
+- Mastermind menu and how to play
+    - When you run the game mastermind, it will display a menu and let the player choose between two game modes<br>
+    ![mastermind menu](assets\readme-images\mastermind-menu.png)
+- Two game modes of Mastermind, one standard with 4 numbers in range 0-9, and one custom where the player can set the rules
+- Poker menu and how to play
+    - Running the game of poker will inform the player of how it is played, and link to further reading on what hand beats what<br>
+    ![poker menu](assets\readme-images\poker-menu.png)
+- Highscores for both games, with a menu for sorting based on different keys
+    - The highscore table can be sorted based on rounds played, best score, top 5 averages and show games by only a specific player<br>
+    ![highscore](assets\readme-images\highscore.png)
 
 
 ### 2.2 Features left to implement
+- AI behavoir for the poker game
+    - At this point, the AI doesn't try to improve its hand. In the future, an AI that swaps cards best on the highest probability to win should be a development goal. This is outside of the score for this project however
 
 
 ## 3. Data Model
