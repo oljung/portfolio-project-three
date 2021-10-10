@@ -8,9 +8,9 @@ class WorksheetHandler:
     a worksheet
     """
     SCOPE = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive.file",
-    "https://www.googleapis.com/auth/drive"
+            "https://www.googleapis.com/auth/spreadsheets",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive"
     ]
     CREDS = Credentials.from_service_account_file('creds.json')
     SCOPED_CREDS = CREDS.with_scopes(SCOPE)
@@ -24,7 +24,6 @@ class WorksheetHandler:
         worksheet = WorksheetHandler.SHEET.worksheet(name)
         data = worksheet.get_all_values()
         return data
-
 
     def update_worksheet(name, data):
         """

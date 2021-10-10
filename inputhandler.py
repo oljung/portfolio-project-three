@@ -1,6 +1,6 @@
 class InputHandler:
     """
-    This class acts as a utility class containing static methods 
+    This class acts as a utility class containing static methods
     for handling input in other modules.
     """
     def input_integer_range(message, low, high):
@@ -19,10 +19,9 @@ class InputHandler:
             except:
                 print('Only enter a whole number within the desired range, please\n')
 
-
     def input_integer_sequence(message, length):
         """
-        This method will convert a string input to a squence of 
+        This method will convert a string input to a squence of
         numbers of "lenght" and return it as a list
         """
         while(True):
@@ -36,10 +35,9 @@ class InputHandler:
             except:
                 print('Only whole numbers are allowed\n')
 
-
     def input_integer(message):
         """
-        Method for handling integer input of any value, 
+        Method for handling integer input of any value,
         will run until valid input is given
         """
         while(True):
@@ -49,8 +47,7 @@ class InputHandler:
                     break
             except:
                 print('Only enter a whole number, please\n')
-        
-    
+
     def input_bool(message):
         """
         Method for handling yes or no input,
@@ -67,11 +64,10 @@ class InputHandler:
                 break
             else:
                 print('please enter value y(es) or n(o)\n')
-    
 
     def input_name(message):
         """
-        Method for handling name input, making sure 
+        Method for handling name input, making sure
         string is not empty and not more than 6 characters
         """
         while(True):
