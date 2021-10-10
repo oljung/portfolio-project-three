@@ -30,32 +30,15 @@ class RunPoker:
               '2. Write the number of the card(s) you want to swap, like this:\n' +
               'If you want to swap card 2, type in 2.\n' +
               'If you want to swap card 1 and 4, type 14')
-        print('When you have swapped your cards both your and AI hand is shown,\n' +
+        print('Next both your and AI hand is shown,\n' +
               'and the winner is declared.')
-        print('Hand are ranked using standard poker rules:\n' +
-              'In ascending order:\n' +
-              'Highcard\n' +
-              'Pair\n' +
-              'Two Pair\n' +
-              'Trips (three of a kind)\n' +
-              'Straight (all cards are connected)\n' +
-              'Flush (all card have the same suite)\n' +
-              'Full House (Pair and Trips)\n' +
-              'Quads (four of a kind)\n' +
-              'Straight Flush (all cards connected and in suite)')
-        print('In the unlikely event of a tie, the higher pair or similar wins.\n' +
-              'If that value is the same, high card will win.\n' +
-              'If highcard is the same rank, suite will win.Suites are ranked as follows:\n' +
-              'In ascending order:\n' +
-              'Clubs\n' +
-              'Diamonds\n' +
-              'Hearts\n' +
-              'Spades')
-        print('There are some slight deviations to tiebreakers, \n' +
-              'you can read more about them here:\n' +
-              '"link to repo"\n' +
+        print('For information on what hand beats what, \n' +
+              'and what happens when both players have an equally good hand,\n' +
+              'please follow the link below:\n' +
+              'https://github.com/oljung/portfolio-project-three\n' +
               'NOTE! Ctrl + c will terminate the app, use right click to copy')
-        answer = InputHandler.input_bool('Would you like to play a round? Y(es) or N(o): ')
+        message = 'Would you like to play a round? Y(es) or N(o): '
+        answer = InputHandler.input_bool(message)
         if answer:
             self.run_game()
 
@@ -67,7 +50,8 @@ class RunPoker:
         game = Poker()
         AI_win = game.play_round(self.name)
         self.update_scores(AI_win)
-        answer = InputHandler.input_bool('Would you like to play another round? Y(es) or N(o): ')
+        message = 'Would you like to play another round? Y(es) or N(o): '
+        answer = InputHandler.input_bool(message)
         if answer:
             self.run_game()
 
@@ -90,4 +74,5 @@ class RunPoker:
             return False
         else:
             win_rate = round(self.games_won/self.games_played, 2) * 100
-            return [self.name, self.games_played, self.games_won, self.games_lost, win_rate]
+            return [self.name, self.games_played, \
+                self.games_won, self.games_lost, win_rate]
