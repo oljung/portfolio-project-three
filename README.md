@@ -9,7 +9,7 @@ Link to deployed site: https://mastermind-poker.herokuapp.com/
 ### Table of Contents
 **[1. User Experience](#1-user-experience)**<br>
 **[2. Features](#2-features)**<br>
-**[3. Technologies Used](#3-data-model)**<br>
+**[3. Data Model](#3-data-model)**<br>
 **[4. Testing](#4-testing)**<br>
 **[5. Deployment](#5-deployment)**<br>
 **[6. Credits](#6-credits)**<br>
@@ -78,7 +78,23 @@ The main audience for this game is players who enjoy logic puzzles or the probab
     - After you swap the game will compare your hand against the hand of the AI and display both hands and declare a winner. It will look like this:<br>
     ![poker game over](assets\readme-images\poker-won.png)
     - Now you can decide to play another game or return to the main menu.
+    - The winner of a hand is determined by who has the best ranking. If both hands are equal, say both have a pair, the best pair will win. If the pairs are also equal, the player with the best highcard wins. The rankings are as follows:
+        - Highcard
+        - Pair
+        - Trips
+        - Straight
+        - Flush
+        - Full House (trips and a pair)
+        - Quads
+        - Straight Flush
+    - When both players have a highcard of equal rank, say both players have an ace, the card with the best suit will win. Suits are ranked as follows:
+        - Clubs (lowest)
+        - Diamonds
+        - Hearts
+        - Spades (highest)
 - Both games will allow you to update highscores. If you play more than 5 rounds, you can compare your score against the top players of each game.
+
+## 2. Features
 
 ### 2.1 Existing features
 - Welcoming menu
