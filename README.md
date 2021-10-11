@@ -1,9 +1,9 @@
 # Mastermind Poker
-Mastermind Poker is an app containing two logic based games, Mastermind where you guess a sequence of numbers, and poker where you play a 5-card poker hand against the AI.
+Mastermind Poker is an app containing two logic based games, Mastermind where you guess a sequence of numbers, and poker where you play a 5-card poker hand against the AI. This is a back-end only project for the software developer diploma course at Code Institute.
 
 Link to deployed site: https://mastermind-poker.herokuapp.com/
 
-![responsiveness](assets/images/readme-images/responsive-start.png)
+![responsiveness](assets\readme-images\responsive.png)
 
 
 ### Table of Contents
@@ -180,6 +180,51 @@ Solved bugs:
 
 ## 5. Deployment
 
+In order to deploy this terminal application to the web, the plattform Heroku was used. In order to upload you own version, you first have to fork or clone this repository. To make a clone, follow the instructions below. To upload to Heroku, follow the steps in 5.2. To connect to the APIs from google cloud, follow the steps in 5.3
+### 5.1 Make a clone
+To clone the repository to make a local copy of it, follow these steps:
+1. Login to [GitHub](https://github.com/) and locate the [repository](https://github.com/oljung/portfolio-project-two)
+1. Under the repository name, click "Clone or download"
+1. To clone the repository using HTTPS copy the link under "clone with HTTPS"
+1. Open Git Bash
+1. Change directory to where you want the clone to be saved
+1. Use the command "git clone" and then paste the url you copied from step 3
+```
+$ git clone https://github.com/oljung/portfolio-project-two
+```
+7. Your clone will now be saved, and any commits will be saved to your new repository
+
+### 5.2 Deploy on Heroku
+
+In order to deploy the site to Heroku, you must first create an accout. Then follow these steps:
+1. Create a new Heroku app
+1. Go to settings, ther you will first set up 2 config vars. The first one will be CREDS and the value will be all the information from your creds.json file (more on that in 5.3) and the otehr will be PORT with the value of 8000
+1. Now select build packs, python and node.js in that order
+1. Now click deplay, and the deployment should begin
+
+### 5.3 Setting up APIs and credentials
+
+This application uses two APIs from google cloud, the google sheets API and the google drive API. In order to get everything set up, you need to do the following:
+1. Go to google cloud platform and set up an account, you can use any gmail account
+1. Set up a new project
+1. Next go to APIs and services and find the google sheets and google drive APIs
+1. Now you will need to create credentials, you can follow the steps [here](https://cloud.google.com/docs/authentication/getting-started) until you have downloaded your credentials file
+1. Upload the credentials file to your project and rename it creds.json. IMPORTANT add this file to the .gitignore to keep sensitive information hidden
+1. Now copy the value between the "" in the client email of the creds.json file, and use that information to share a google sheets from your account to the application. The code in the app will handle the rest
+1. IMPORTANT your spreadsheet must be named **highscore_table** for this to work, if not the program will throw an exception
+1. You may need to install two modules to python, use this command: ```pip3 install gspread google-auth``` in your terminal to install them<br>
+<br>
+Now everything should be set up for your project to run. Remember to add the information from your creds.json to the config var for heroku to run correctly
+
 
 ## 6. Credits
 
+### Code
+- The code for setting up API connections to google sheets was heavily influenced by the "Love Sandwiches" project from Code Institute
+
+### Testing
+- Again Robin, Andreas, Joakim, Sebastian and Mikael helped test the games somewhat. I am always thankful for your overly critical input
+
+### Special Mentions
+- First of all I would like to mention my Mentor Nishant Kumar who has been a great support for all my projects on the course. His constructive and positive feedback has both helped me improve my code and become the confident coder I am today. Thank you!
+- Again my first hackathon crew deserves a thanks for staying in touch, discussing code and ideas and trying out projects. Thank you for your time guys, really appretiate it!
