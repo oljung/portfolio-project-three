@@ -3,7 +3,7 @@ Mastermind Poker is an app containing two logic based games, Mastermind where yo
 
 Link to deployed site: https://mastermind-poker.herokuapp.com/
 
-![responsiveness](assets\readme-images\responsive.png)
+![responsiveness](https://github.com/oljung/portfolio-project-three/blob/main/assets/readme-images/responsive.png)
 
 
 ### Table of Contents
