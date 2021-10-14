@@ -63,20 +63,20 @@ The main audience for this game is players who enjoy logic puzzles or the probab
     - You will be asked to chose the standard or custom game. Only the standard game will keep track of highscore. If you choose the custom game, you will get to select how many numbers to guess, and the range of numbers the game will use.
     - When you have selected game type, the game will randomly generate a secret code for you. You will now be asked to enter a 4 digit number containing your guess.
     - The game will tell you how you did by showing result, and it wil look like this: <br>
-    ![mastermind guess](assets\readme-images\mastermind-guess.png)
+    ![mastermind guess](https://github.com/oljung/portfolio-project-three/blob/main/assets/readme-images/mastermind-guess.png)
     - A number will mean that the number is correct, in this picture none of the guesses were correct.
     - A 'C' will mean that the number is in the code, but in the wrong position
     - A '-' means that the number is not included in the code.
     - Evaluate your result and make a new guess, and continue until you beat the code, the game will then tell you how you did and ask if you want another round, like this:<br>
-    ![mastermind win](assets\readme-images\mastermind-won.png)
+    ![mastermind win](https://github.com/oljung/portfolio-project-three/blob/main/assets/readme-images/mastermind-won.png)
 - Poker:
     - At the start of the game, you will be dealt 5 random cards, and the goal is to get the best poker hand.
     - You will be shown you hand, and asked to if you want to swap any cards. Here you can give a number between 0 (no cards will be swapped) and 5, swapping all cards.
     - Next you will enter a number, the lenght of the amount of cards you want to swap. If you want to swap card to, enter 2. If you want to swap card 1 and 4, enter 14. It will look like this:<br>
-    ![poker swap](assets\readme-images\poker-swap.png)
+    ![poker swap](https://github.com/oljung/portfolio-project-three/blob/main/assets/readme-images/poker-swap.png)
     - As you can see, I decided to swap 2 cards, cards 1 and 3. After that new cards are dealt and the hand is sorted again.
     - After you swap the game will compare your hand against the hand of the AI and display both hands and declare a winner. It will look like this:<br>
-    ![poker game over](assets\readme-images\poker-won.png)
+    ![poker game over](https://github.com/oljung/portfolio-project-three/blob/main/assets/readme-images/poker-won.png)
     - Now you can decide to play another game or return to the main menu.
     - The winner of a hand is determined by who has the best ranking. If both hands are equal, say both have a pair, the best pair will win. If the pairs are also equal, the player with the best highcard wins. The rankings are as follows:
         - Highcard
@@ -99,18 +99,18 @@ The main audience for this game is players who enjoy logic puzzles or the probab
 ### 2.1 Existing features
 - Welcoming menu
     - Will welcome players and give short information about how to play the game<br>
-    ![welcome menu](assets\readme-images\menu.png)
+    ![welcome menu](https://github.com/oljung/portfolio-project-three/blob/main/assets/readme-images/menu.png)
 - Two seperate games, providing unique challenges to the player
 - Mastermind menu and how to play
     - When you run the game mastermind, it will display a menu and let the player choose between two game modes<br>
-    ![mastermind menu](assets\readme-images\mastermind-menu.png)
+    ![mastermind menu](https://github.com/oljung/portfolio-project-three/blob/main/assets/readme-images/mastermind-menu.png)
 - Two game modes of Mastermind, one standard with 4 numbers in range 0-9, and one custom where the player can set the rules
 - Poker menu and how to play
     - Running the game of poker will inform the player of how it is played, and link to further reading on what hand beats what<br>
-    ![poker menu](assets\readme-images\poker-menu.png)
+    ![poker menu](https://github.com/oljung/portfolio-project-three/blob/main/assets/readme-images/poker-menu.png)
 - Highscores for both games, with a menu for sorting based on different keys
     - The highscore table can be sorted based on rounds played, best score, top 5 averages and show games by only a specific player<br>
-    ![highscore](assets\readme-images\highscore.png)
+    ![highscore](https://github.com/oljung/portfolio-project-three/blob/main/assets/readme-images/highscore.png)
 
 
 ### 2.2 Features left to implement
