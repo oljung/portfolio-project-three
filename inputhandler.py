@@ -17,7 +17,7 @@ class InputHandler:
                 else:
                     print('Number must be within desired range\n')
             except:
-                print('Only enter a whole number within the desired range, please\n')
+                print('Only enter a whole number within the desired range\n')
 
     def input_integer_sequence(message, length):
         """
@@ -25,8 +25,10 @@ class InputHandler:
         numbers of "lenght" and return it as a list
         """
         while(True):
+            value_str = input(message + '\n')
+            value_list = value_str.split(',')
             try:
-                numbers = [int(i) for i in str(input(message + '\n'))]
+                numbers = [int(i) for i in value_list]
                 if len(numbers) == length:
                     return numbers
                     break
