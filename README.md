@@ -148,7 +148,7 @@ Early on in the project I realized that there would be a lot going on, and many 
 
 - Class structure and basic flow of the program:
     - [Class structure](assets\readme-images\Mastermind_Poker.pdf)
-    - [Flow chart](assets\readme-images\Mastermin_poker flow.pdf)
+    - [Flow chart](assets\readme-images\Mastermind_poker_flow.pdf)
 
 
 ## 4. Testing
