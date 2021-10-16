@@ -147,8 +147,8 @@ Early on in the project I realized that there would be a lot going on, and many 
         - Highscore: This class is used to transform each row in a worksheet containing highscore data into an instance of a Highscore object for use in HighscoreManager to display highscore
 
 - Class structure and basic flow of the program:
-    - [Class structure](assets\readme-images\Mastermind_Poker.pdf)
-    - [Flow chart](assets\readme-images\Mastermind_poker_flow.pdf)
+    - [Class structure](https://github.com/oljung/portfolio-project-three/blob/main/assets/readme-images/Mastermind_Poker.pdf)
+    - [Flow chart](https://github.com/oljung/portfolio-project-three/blob/main/assets/readme-images/Mastermin_poker%20flow.pdf)
 
 
 ## 4. Testing
