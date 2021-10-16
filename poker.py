@@ -116,7 +116,7 @@ class Hand(Deck):
             self.deal(deck, 5)
         elif length != 0:
             positions = InputHandler.input_integer_sequence('Please' \
-                 'select which cards to swap, seperated by a comma ', length)
+                 ' select which cards to swap, seperated by a comma: ', length)
             correct_values = True
             for pos in positions:
                 if pos < 1 or pos > 5:
