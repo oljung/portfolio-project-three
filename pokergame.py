@@ -29,7 +29,7 @@ class RunPoker:
               '1. Choose how many cards you want to swap\n' +
               '2. Write the number of the card(s) you want to swap, like this:\n' +
               'If you want to swap card 2, type in 2.\n' +
-              'If you want to swap card 1 and 4, type 14')
+              'If you want to swap card 1 and 4, type 1,4')
         print('Next both your and AI hand is shown,\n' +
               'and the winner is declared.')
         print('For information on what hand beats what, \n' +

@@ -111,14 +111,23 @@ class Hand(Deck):
         """
         length = InputHandler.input_integer_range('How'\
              'many cards do you want to swap? 0-5: ', 0, 5)
-        if length != 0:
+        if length == 5:
+            self.cards.clear()
+            self.deal(deck, 5)
+        elif length != 0:
             positions = InputHandler.input_integer_sequence('Please' \
-                 'select with cards as a number, like: 14 or 125: ', length)
+                 'select which cards to swap, seperated by a comma ', length)
+            correct_values = True
             for pos in positions:
-                # the values in position will be fron 1-5
-                self.cards.pop(pos-1)
-                self.cards.insert(pos-1, deck.deal())
-            self.sort_hand()
+                if pos < 1 or pos > 5:
+                    correct_values = False
+                    print('cards are numbered 1-5\n')
+            if correct_values:
+                for pos in positions:
+                    # the values in position will be fron 1-5
+                    self.cards.pop(pos-1)
+                    self.cards.insert(pos-1, deck.deal())
+        self.sort_hand()
 
     def __str__(self):
         """

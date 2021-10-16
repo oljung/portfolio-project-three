@@ -29,7 +29,7 @@ class RunMastermind:
               'You have as many guesses as you need.\n' +
               'After every guess you will see a result of that guess.\n' +
               'A result may look like this:\n' +
-              'Your guess: 1234\n' +
+              'Your guess: 1,2,3,4\n' +
               "The result: ['1', '-', 'C', '-']")
         print('This means the following:\n' +
               'The first number, 1, is in the correct position\n' +
@@ -79,10 +79,12 @@ class RunMastermind:
             while not correct_range:
                 message_low = 'Please select the lowest number: '
                 message_high = 'Please select the highest number: '
-                low = InputHandler.input_integer_range(message_low, 0, 8)
-                high = InputHandler.input_integer_range(message_high, 1, 9)
+                low = InputHandler.input_integer(message_low)
+                high = InputHandler.input_integer(message_high)
                 if high - low > 0:
                     correct_range = True
+                else:
+                    print('Lowest number must be lower than highest number\n')
             length = InputHandler.input_integer('Please select a lenght: ')
             game = Mastermind(low, high, length)
 

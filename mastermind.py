@@ -41,8 +41,8 @@ class Mastermind:
         a valid number sequence is entered
         """
         correct_number_values = False
-        message = f'Enter a number of {self.length}' \
-            f' numbers between {self.nr_low} and {self.nr_high}: '
+        message = f'Enter {self.length} numbers' \
+            f' between {self.nr_low} and {self.nr_high} seperated by commas: '
         while not correct_number_values:
             guess = InputHandler.input_integer_sequence(message, self.length)
             for num in guess:
