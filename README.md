@@ -61,20 +61,20 @@ The main audience for this game is players who enjoy logic puzzles or the probab
 
 - Mastermind:
     - You will be asked to chose the standard or custom game. Only the standard game will keep track of highscore. If you choose the custom game, you will get to select how many numbers to guess, and the range of numbers the game will use.
-    - When you have selected game type, the game will randomly generate a secret code for you. You will now be asked to enter a 4 digit number containing your guess.
+    - When you have selected game type, the game will randomly generate a secret code for you. You will now be asked to enter 4 numbers (in standard game) seperated by commas.
     - The game will tell you how you did by showing result, and it wil look like this: <br>
     ![mastermind guess](https://github.com/oljung/portfolio-project-three/blob/main/assets/readme-images/mastermind-guess.png)
-    - A number will mean that the number is correct, in this picture none of the guesses were correct.
-    - A 'C' will mean that the number is in the code, but in the wrong position
+    - A number will mean that the number is correct, in this picture the numbers 1 and 3 are correct.
+    - A 'C' will mean that the number is in the code, but in the wrong position.
     - A '-' means that the number is not included in the code.
     - Evaluate your result and make a new guess, and continue until you beat the code, the game will then tell you how you did and ask if you want another round, like this:<br>
     ![mastermind win](https://github.com/oljung/portfolio-project-three/blob/main/assets/readme-images/mastermind-won.png)
 - Poker:
     - At the start of the game, you will be dealt 5 random cards, and the goal is to get the best poker hand.
     - You will be shown you hand, and asked to if you want to swap any cards. Here you can give a number between 0 (no cards will be swapped) and 5, swapping all cards.
-    - Next you will enter a number, the lenght of the amount of cards you want to swap. If you want to swap card to, enter 2. If you want to swap card 1 and 4, enter 14. It will look like this:<br>
+    - Next you will enter a series of numbers equal to the amount of cards you want to swap, serperated by commas. If you want to swap card two, enter 2. If you want to swap card 1 and 4, enter 1,4. It will look like this:<br>
     ![poker swap](https://github.com/oljung/portfolio-project-three/blob/main/assets/readme-images/poker-swap.png)
-    - As you can see, I decided to swap 2 cards, cards 1 and 3. After that new cards are dealt and the hand is sorted again.
+    - As you can see, I decided to swap 2 cards, cards 2 and 3, thus improving my hand to a pair of Kings. After that new cards are dealt and the hand is sorted again.
     - After you swap the game will compare your hand against the hand of the AI and display both hands and declare a winner. It will look like this:<br>
     ![poker game over](https://github.com/oljung/portfolio-project-three/blob/main/assets/readme-images/poker-won.png)
     - Now you can decide to play another game or return to the main menu.
