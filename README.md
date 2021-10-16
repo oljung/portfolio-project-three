@@ -146,6 +146,10 @@ Early on in the project I realized that there would be a lot going on, and many 
         - HighscoreManager: This class holds a list of highscore items and has methods for printing a table of highscore and sorting the list based on certain keys
         - Highscore: This class is used to transform each row in a worksheet containing highscore data into an instance of a Highscore object for use in HighscoreManager to display highscore
 
+- Class structure and basic flow of the program:
+    - [Class structure](assets\readme-images\Mastermind_Poker.pdf)
+    - [Flow chart](assets\readme-images\Mastermin_poker flow.pdf)
+
 
 ## 4. Testing
 The app was tested extensively in the terminal, where many games of Mastermind were played, and the custom rules were tried in many different ways to make sure the game does not break. The poker game was tested by manually setting poker hands and thus being able to make sure all hand rankings are calculated correctly and all tiebreaks are resolved in a manner that is consistent. The entire app was then tested with all options tried in the online terminal to make sure that all text is displayed the way it was intended.
